@@ -1,13 +1,15 @@
 setopt correct                                                  # Auto correct mistakes
-setopt extendedglob                                             # Extended globbing. Allows using regular expressions with * -- ca
+setopt extendedglob                                             # Extended globbing. Allows using regular expressions with *
 setopt nocaseglob                                               # Case insensitive globbing
 setopt rcexpandparam                                            # Array expension with parameters
 setopt numericglobsort                                          # Sort filenames numerically when it makes sense
 setopt nobeep                                                   # No beep
 setopt appendhistory                                            # Immediately append history instead of overwriting
 setopt histignorealldups                                        # If a new command is a duplicate, remove the older one
-setopt hist_ignore_space					# Do not save command if it begins with whitespace
+setopt hist_ignore_space                                        # Do not save command if it begins with whitespace
 setopt autocd                                                   # if only directory path is entered, cd there.
+
+disable -p '#'
 
 # Load completions
 zstyle ':completion:*' matcher-list 'm:{a-za-z}={a-za-z}'       # case insensitive tab completion
