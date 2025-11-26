@@ -4,6 +4,7 @@ local XDG_DATA_HOME=${XDG_DATA_HOME:-$HOME/.local/share}
 local XDG_STATE_HOME=${XDG_STATE_HOME:-$HOME/.local/state}
 
 # Fixup directories for programs that do not currently respect the XDG Base Directories standard
+export ZDOTDIR=${XDG_CONFIG_HOME}/zsh
 export NPM_CONFIG_USERCONFIG=${XDG_CONFIG_HOME}/npm/npmrc
 export DOCKER_CONFIG=${XDG_CONFIG_HOME}/docker
 

@@ -1,6 +1,7 @@
 /*
 
 !.gitignore
+!.zshenv
 
 !.config
 .config/*
