@@ -1,11 +1,1 @@
 /*
-
-!.gitignore
-!.zshenv
-
-!.config
-.config/*
-
-!.config/nvim
-
-!.config/fontconfig
