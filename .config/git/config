@@ -1,0 +1,35 @@
+[user]
+	name = Daniel J. Rollins
+	email = me@deej.io
+	signingkey = 6830B0AE30DD38DB
+[color]
+	ui = auto
+[alias]
+	l = "!. ~/.config/git/helpers && pretty_git_log"
+	b = "!. ~/.config/git/helpers && pretty_git_branch"
+	h = "!. ~/.config/git/helpers && show_git_head"
+	exec = "!exec " # execute shell command in the git root
+	clean = !git clean --exclude=.deej
+[merge]
+	tool = nvimdiff
+[core]
+	editor = nvim
+	excludesFile = ~/.config/git/ignore
+[pull]
+	ff = on
+[rebase]
+	instructionFormat = (%an <%ae>) %s
+[init]
+	defaultBranch = main
+[commit]
+	gpgsign = true
+[tag]
+	gpgsign = true
+[push]
+	autoSetupRemote = true
+
+[include]
+	path = ./config.local
+
+[mergetool "nvimdiff"]
+	cmd = "nvim -d -c \"wincmd l\" -c \"norm ]c\" \"$LOCAL\" \"$MERGED\" \"$REMOTE\""
