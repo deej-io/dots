@@ -1,0 +1,43 @@
+#!/bin/sh
+
+show_error() {
+    msg="$1"
+    if command -v swaynag >/dev/null 2>&1; then
+        swaynag -t error -m "$msg" >/dev/null 2>&1 &
+        return
+    fi
+
+    if command -v notify-send >/dev/null 2>&1; then
+        notify-send "Sway" "$msg" >/dev/null 2>&1
+        return
+    fi
+
+    printf '%s\n' "$msg" >&2
+}
+
+has() {
+    command -v "$1" >/dev/null 2>&1
+}
+
+if has vicinae && vicinae ping >/dev/null 2>&1; then
+    exec vicinae toggle "$@"
+fi
+
+if has wofi; then
+    exec wofi --show drun "$@"
+fi
+
+if has rofi; then
+    exec rofi -show drun "$@"
+fi
+
+if has dmenu_run; then
+    exec dmenu_run "$@"
+fi
+
+if has dmenu; then
+    exec dmenu "$@"
+fi
+
+show_error 'No supported launcher found: vicinae, wofi, rofi, dmenu.'
+exit 1
