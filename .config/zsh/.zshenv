@@ -5,6 +5,13 @@ local XDG_STATE_HOME=${XDG_STATE_HOME:-$HOME/.local/state}
 
 # Fixup directories for programs that do not currently respect the XDG Base Directories standard
 export ZDOTDIR=${XDG_CONFIG_HOME}/zsh
+
+export NPM_CONFIG_USERCONFIG=${XDG_CONFIG_HOME}/npm/npmrc
+export NPM_CONFIG_PREFIX=${XDG_DATA_HOME}/npm
+export NPM_CONFIG_CACHE=${XDG_CACHE_HOME}/npm
+export NPM_CONFIG_INIT_MODULE=${XDG_CONFIG_HOME}/npm/config/npm-init.js
+export NPM_CONFIG_LOGS_DIR=${XDG_STATE_HOME}/npm/logs
+
 export DOCKER_CONFIG=${XDG_CONFIG_HOME}/docker
 
 export LESSHISTFILE=$XDG_CACHE_HOME/lesshst
@@ -29,9 +36,10 @@ export VISUAL=nvim
 export EDITOR=$VISUAL
 
 typeset -U path
-path+="$HOME/bin"
 path+="$CARGO_HOME/bin"
 path+="$HOME/.local/bin"
 path+="$HOME/.local/share/npm/bin"
+path+="$HOME/.local/share/go/bin"
+path+="$HOME/.opencode/bin"
 
 export GPG_TTY=$(tty)
