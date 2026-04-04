@@ -100,3 +100,4 @@ if which direnv > /dev/null 2>&1; then
 fi
 
 alias dots='/usr/bin/git --git-dir=$HOME/.dots --work-tree=$HOME'
+alias enp="enpasscli -vault=$HOME/documents/Enpass/Vaults/primary"

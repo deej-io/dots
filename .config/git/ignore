@@ -1,2 +1,4 @@
 .deej
 .envrc*
+
+**/.claude/settings.local.json
