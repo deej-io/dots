@@ -106,7 +106,7 @@ vim.pack.add {
   'https://github.com/echasnovski/mini.nvim',
 
   -- Treesitter
-  'https://github.com/nvim-treesitter/nvim-treesitter',
+  { src = 'https://github.com/nvim-treesitter/nvim-treesitter', version = 'master' },
 }
 
 -- [[ Colorscheme ]]
@@ -304,26 +304,24 @@ local external_servers = {
   gdscript = {},
 }
 
-local servers = vim.tbl_extend('force', mason_servers, external_servers)
-
 require('mason').setup()
 
 local ensure_installed = vim.tbl_keys(mason_servers)
 vim.list_extend(ensure_installed, { 'stylua' })
 require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
+-- Register per-server config via vim.lsp.config so mason-lspconfig's
+-- automatic_enable picks it up. The old handlers mechanism is ignored when
+-- automatic_enable is on.
+for server_name, server in pairs(mason_servers) do
+  server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
+  vim.lsp.config(server_name, server)
+end
+
 require('mason-lspconfig').setup {
   ensure_installed = {},
   automatic_enable = true,
   automatic_installation = false,
-  handlers = {
-    function(server_name)
-      local server = servers[server_name] or {}
-      server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
-      vim.lsp.config(server_name, server)
-      vim.lsp.enable(server_name)
-    end,
-  },
 }
 
 for server_name, server in pairs(external_servers) do
@@ -386,7 +384,7 @@ end
 
 -- [[ Treesitter ]]
 require('nvim-treesitter').setup {
-  ensure_installed = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc' },
+  ensure_installed = { 'bash', 'c', 'cpp', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc' },
   auto_install = true,
   highlight = {
     enable = true,
