@@ -24,7 +24,7 @@ if has vicinae && vicinae ping >/dev/null 2>&1; then
 fi
 
 if has wofi; then
-    exec wofi --show drun "$@"
+    exec wofi --insensitive --show drun,run "$@"
 fi
 
 if has rofi; then

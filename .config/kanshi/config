@@ -1,0 +1,14 @@
+# Home monitor layout for sway/kanshi.
+# The external CMT GM34-CWQ2 is the main/primary display on the left.
+profile home {
+    output "CMT GM34-CWQ2 CMI234700112" mode 3440x1440@180Hz position 0,0 scale 1
+    output eDP-1 mode 2560x1600@165Hz position 3440,0 scale 1
+
+    # Sway doesn't have a real Wayland "primary" flag; put workspace 1 there and focus it.
+    exec swaymsg 'workspace number 1; move workspace to output "CMT GM34-CWQ2 CMI234700112"; focus output "CMT GM34-CWQ2 CMI234700112"'
+}
+
+# Fallback when only the laptop panel is connected.
+profile laptop {
+    output eDP-1 mode 2560x1600@165Hz position 0,0 scale 1
+}
