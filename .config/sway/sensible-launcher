@@ -31,6 +31,10 @@ if has rofi; then
     exec rofi -show drun "$@"
 fi
 
+if has wmenu-run; then
+    exec wmenu-run "$@"
+fi
+
 if has dmenu_run; then
     exec dmenu_run "$@"
 fi
