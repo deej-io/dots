@@ -40,9 +40,11 @@ export NIX_PATH=$XDG_STATE_HOME/nix/defexpr/channels:$XDG_STATE_HOME/nix/defexpr
 export VISUAL=nvim
 export EDITOR=$VISUAL
 
-export SUDO_ASKPASS=$HOME/.local/bin/askpass
-export SSH_ASKPASS=$HOME/.local/bin/askpass
-export SSH_ASKPASS_REQUIRE=prefer
+if [[ -e $HOME/.local/bin/askpass ]]; then
+	export SUDO_ASKPASS=$HOME/.local/bin/askpass
+	export SSH_ASKPASS=$HOME/.local/bin/askpass
+	export SSH_ASKPASS_REQUIRE=prefer
+fi
 
 typeset -U path
 path+="$CARGO_HOME/bin"
